@@ -3,12 +3,10 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 
 const CATEGORIAS = [
-  { slug: 'electronica', nombre: 'Electrónica' },
-  { slug: 'computacion', nombre: 'Computación' },
-  { slug: 'celulares', nombre: 'Celulares' },
-  { slug: 'hogar', nombre: 'Hogar' },
-  { slug: 'deportes', nombre: 'Deportes' },
-  { slug: 'herramientas', nombre: 'Herramientas' },
+  { slug: 'tecnologia',       nombre: 'Tecnología' },
+  { slug: 'tv-y-audio',       nombre: 'TV y Audio' },
+  { slug: 'electrodomesticos', nombre: 'Electrodomésticos' },
+  { slug: 'hogar',            nombre: 'Hogar' },
 ]
 
 interface Props {
@@ -73,10 +71,10 @@ export default function ProductFilters({ categoriaActiva }: Props) {
         <h3 className="text-sm font-semibold text-[#333] mb-3">Ordenar por</h3>
         <ul className="space-y-1">
           {[
-            { value: 'relevancia', label: 'Relevancia' },
-            { value: 'precio-asc', label: 'Menor precio' },
+            { value: 'relevancia',   label: 'Relevancia' },
+            { value: 'precio-asc',  label: 'Menor precio' },
             { value: 'precio-desc', label: 'Mayor precio' },
-            { value: 'descuento', label: 'Mayor descuento' },
+            { value: 'descuento',   label: 'Mayor descuento' },
           ].map(op => (
             <li key={op.value}>
               <button

@@ -1,0 +1,178 @@
+{
+  "data": [
+    {
+      "breadcrumb": [
+        {
+          "canonical": "/catalogo",
+          "categories": [],
+          "fullurl": "/catalogo",
+          "idpath": "|10075|",
+          "internalid": "10075",
+          "isprimaryurl": true,
+          "name": "Catálogo",
+          "parenturl": ""
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA",
+          "idpath": "|10075|10073|",
+          "internalid": "10073",
+          "isprimaryurl": true,
+          "name": "TECNOLOGÍA",
+          "parenturl": "/catalogo",
+          "sequencenumber": "0.0"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Computacion",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Computacion",
+          "idpath": "|10075|10073|10090|",
+          "internalid": "10090",
+          "isprimaryurl": true,
+          "name": "Computación",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "0.0"
+        }
+      ],
+      "canonical": "/catalogo/TECNOLOGIA/Computacion",
+      "categories": [
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Computacion/Notebooks",
+          "categories": [],
+          "description": "Notebooks",
+          "fullurl": "/catalogo/TECNOLOGIA/Computacion/Notebooks",
+          "idpath": "|10075|10073|10090|10101|",
+          "internalid": "10101",
+          "isprimaryurl": true,
+          "name": "Notebooks",
+          "parenturl": "/catalogo/TECNOLOGIA/Computacion",
+          "sequencenumber": "0.0",
+          "urlfragment": "Notebooks"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Computacion/Tablets",
+          "categories": [],
+          "description": "Tablets",
+          "fullurl": "/catalogo/TECNOLOGIA/Computacion/Tablets",
+          "idpath": "|10075|10073|10090|10102|",
+          "internalid": "10102",
+          "isprimaryurl": true,
+          "name": "Tablets",
+          "parenturl": "/catalogo/TECNOLOGIA/Computacion",
+          "sequencenumber": "1.0",
+          "urlfragment": "Tablets"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Computacion/PC_de_Escritorio_Y_All-in-One",
+          "categories": [],
+          "description": "PC de Escritorio y All-in-One",
+          "fullurl": "/catalogo/TECNOLOGIA/Computacion/PC_de_Escritorio_Y_All-in-One",
+          "idpath": "|10075|10073|10090|10103|",
+          "internalid": "10103",
+          "isprimaryurl": true,
+          "name": "PC de Escritorio y All-in-One",
+          "parenturl": "/catalogo/TECNOLOGIA/Computacion",
+          "sequencenumber": "2.0",
+          "urlfragment": "PC_de_Escritorio_Y_All-in-One"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Computacion/Escaneres",
+          "categories": [],
+          "description": "Escáneres",
+          "fullurl": "/catalogo/TECNOLOGIA/Computacion/Escaneres",
+          "idpath": "|10075|10073|10090|10104|",
+          "internalid": "10104",
+          "isprimaryurl": true,
+          "name": "Escáneres",
+          "parenturl": "/catalogo/TECNOLOGIA/Computacion",
+          "sequencenumber": "3.0",
+          "urlfragment": "Escaneres"
+        }
+      ],
+      "_debug_requestTime": 11,
+      "fullurl": "/catalogo/TECNOLOGIA/Computacion",
+      "idpath": "|10075|10073|10090|",
+      "internalid": "10090",
+      "isprimaryurl": true,
+      "name": "Computación",
+      "parenturl": "/catalogo/TECNOLOGIA",
+      "sequencenumber": "0.0",
+      "siblings": [
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Celulares_y_Telefonia",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Celulares_y_Telefonia",
+          "idpath": "|10075|10073|10088|",
+          "internalid": "10088",
+          "isprimaryurl": true,
+          "name": "Celulares y Telefonía",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "2.0",
+          "urlfragment": "Celulares_y_Telefonia"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Componentes_de_PC",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Componentes_de_PC",
+          "idpath": "|10075|10073|10089|",
+          "internalid": "10089",
+          "isprimaryurl": true,
+          "name": "Componentes de PC",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "3.0",
+          "urlfragment": "Componentes_de_PC"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Gaming",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Gaming",
+          "idpath": "|10075|10073|10091|",
+          "internalid": "10091",
+          "isprimaryurl": true,
+          "name": "Gaming",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "4.0",
+          "urlfragment": "Gaming"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Impresoras",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Impresoras",
+          "idpath": "|10075|10073|10092|",
+          "internalid": "10092",
+          "isprimaryurl": true,
+          "name": "Impresoras",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "1.0",
+          "urlfragment": "Impresoras"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Perifericos_y_Accesorios",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Perifericos_y_Accesorios",
+          "idpath": "|10075|10073|10093|",
+          "internalid": "10093",
+          "isprimaryurl": true,
+          "name": "Periféricos y Accesorios",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "5.0",
+          "urlfragment": "Perifericos_y_Accesorios"
+        },
+        {
+          "canonical": "/catalogo/TECNOLOGIA/Seguridad_y_Conectividad",
+          "categories": [],
+          "fullurl": "/catalogo/TECNOLOGIA/Seguridad_y_Conectividad",
+          "idpath": "|10075|10073|10094|",
+          "internalid": "10094",
+          "isprimaryurl": true,
+          "name": "Seguridad y Conectividad",
+          "parenturl": "/catalogo/TECNOLOGIA",
+          "sequencenumber": "6.0",
+          "urlfragment": "Seguridad_y_Conectividad"
+        }
+      ],
+      "urlfragment": "Computacion"
+    }
+  ]
+}
