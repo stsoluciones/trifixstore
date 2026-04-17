@@ -20,7 +20,6 @@ export async function middleware(req: NextRequest) {
     const payload = await verifyJWT(token)
     const rolesPermitidos = RUTAS_PROTEGIDAS[rutaRequerida]
 
-    // Verificar que el rol del token tenga acceso a esta ruta
     if (!rolesPermitidos.includes(payload.rol)) {
       return NextResponse.redirect(new URL('/dashboard/cliente', req.url))
     }
@@ -50,7 +49,6 @@ export async function middleware(req: NextRequest) {
 
     return response
   } catch {
-    // Token inválido o expirado — limpiar cookie y redirigir al login
     const response = NextResponse.redirect(new URL('/login', req.url))
     response.cookies.delete('session-token')
     return response
