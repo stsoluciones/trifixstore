@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
       "mcp__claude_ai_Vercel__list_teams",
-      "mcp__claude_ai_Vercel__list_projects"
+      "mcp__claude_ai_Vercel__list_projects",
+      "WebFetch(domain:www.ceven.com)"
     ]
   }
 }

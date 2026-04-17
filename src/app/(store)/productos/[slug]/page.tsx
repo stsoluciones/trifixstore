@@ -4,6 +4,7 @@ import { PRODUCTOS_MOCK, CATEGORIAS_MOCK } from '@/shared/lib/mock-data'
 import { formatPrice } from '@/shared/utils/formatPrice'
 import ProductImages from '@/features/productos/components/ProductImages'
 import ProductCard from '@/features/productos/components/ProductCard'
+import AddToCartButton from '@/features/productos/components/AddToCartButton'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -101,20 +102,7 @@ export default async function ProductoDetallePage({ params }: Props) {
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-col gap-2 pt-2">
-            <button
-              disabled={producto.stock === 0}
-              className="w-full bg-[#E8640B] hover:bg-[#b34700] disabled:bg-[#ccc] disabled:cursor-not-allowed text-white font-semibold py-3 rounded-sm transition-colors"
-            >
-              Agregar al carrito
-            </button>
-            <button
-              disabled={producto.stock === 0}
-              className="w-full bg-[#2968C8] hover:bg-[#1a4f9e] disabled:bg-[#ccc] disabled:cursor-not-allowed text-white font-semibold py-3 rounded-sm transition-colors"
-            >
-              Comprar ahora
-            </button>
-          </div>
+          <AddToCartButton producto={producto} />
 
           {/* Info extra */}
           <div className="border border-[#EBEBEB] rounded-sm divide-y divide-[#EBEBEB]">

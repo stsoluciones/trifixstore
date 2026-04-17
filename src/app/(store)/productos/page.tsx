@@ -34,7 +34,10 @@ export default async function ProductosPage({ searchParams }: Props) {
   let productos = PRODUCTOS_MOCK.filter(p => p.activo)
   if (categoria) {
     const cat = CATEGORIAS_MOCK.find(c => c.slug === categoria)
-    if (cat) productos = productos.filter(p => p.categoriaId === cat.id)
+    if (cat) {
+      const subcatIds = cat.subcategorias.map(s => s.id)
+      productos = productos.filter(p => subcatIds.includes(p.categoriaId))
+    }
   }
   if (stock === '1') productos = productos.filter(p => p.stock > 0)
   productos = ordenarProductos(productos, orden)
@@ -43,7 +46,7 @@ export default async function ProductosPage({ searchParams }: Props) {
     <div>
       {/* Breadcrumb */}
       <nav className="text-xs text-[#666] mb-4 flex items-center gap-1">
-        <Link href="/" className="hover:text-[#E8640B]">Inicio</Link>
+        <Link href="/" className="hover:text-[#E8640B] cursor-pointer">Inicio</Link>
         <span>/</span>
         <span className="text-[#333] font-medium">Productos</span>
       </nav>
@@ -67,7 +70,7 @@ export default async function ProductosPage({ searchParams }: Props) {
           {productos.length === 0 ? (
             <div className="bg-white rounded-sm border border-[#EBEBEB] p-12 text-center">
               <p className="text-[#666]">No hay productos que coincidan con los filtros.</p>
-              <Link href="/productos" className="text-[#2968C8] text-sm mt-2 inline-block hover:underline">
+              <Link href="/productos" className="text-[#2968C8] text-sm mt-2 inline-block hover:underline cursor-pointer">
                 Ver todos los productos
               </Link>
             </div>

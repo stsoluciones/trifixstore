@@ -1,0 +1,295 @@
+{
+  "fetchedAt": "2026-04-17",
+  "source": "https://www.ceven.com/catalogo",
+  "rootId": "10075",
+  "categorias": [
+    {
+      "id": "10073",
+      "nombre": "Tecnología",
+      "slug": "tecnologia",
+      "urlfragment": "TECNOLOGIA",
+      "subcategorias": [
+        {
+          "id": "10092",
+          "nombre": "Impresoras",
+          "slug": "impresoras",
+          "urlfragment": "Impresoras",
+          "categoriaId": "10073",
+          "nivel": 2
+        },
+        {
+          "id": "10090",
+          "nombre": "Computación",
+          "slug": "computacion",
+          "urlfragment": "Computacion",
+          "categoriaId": "10073",
+          "nivel": 2,
+          "subcategorias": [
+            {
+              "id": "10101",
+              "nombre": "Notebooks",
+              "slug": "notebooks",
+              "urlfragment": "Notebooks",
+              "categoriaId": "10090",
+              "nivel": 3
+            },
+            {
+              "id": "10102",
+              "nombre": "Tablets",
+              "slug": "tablets",
+              "urlfragment": "Tablets",
+              "categoriaId": "10090",
+              "nivel": 3
+            },
+            {
+              "id": "10103",
+              "nombre": "PC de Escritorio y All-in-One",
+              "slug": "pc-de-escritorio-y-all-in-one",
+              "urlfragment": "PC_de_Escritorio_Y_All-in-One",
+              "categoriaId": "10090",
+              "nivel": 3
+            },
+            {
+              "id": "10104",
+              "nombre": "Escáneres",
+              "slug": "escaneres",
+              "urlfragment": "Escaneres",
+              "categoriaId": "10090",
+              "nivel": 3
+            }
+          ]
+        },
+        {
+          "id": "10088",
+          "nombre": "Celulares y Telefonía",
+          "slug": "celulares-y-telefonia",
+          "urlfragment": "Celulares_y_Telefonia",
+          "categoriaId": "10073",
+          "nivel": 2
+        },
+        {
+          "id": "10089",
+          "nombre": "Componentes de PC",
+          "slug": "componentes-de-pc",
+          "urlfragment": "Componentes_de_PC",
+          "categoriaId": "10073",
+          "nivel": 2
+        },
+        {
+          "id": "10091",
+          "nombre": "Gaming",
+          "slug": "gaming",
+          "urlfragment": "Gaming",
+          "categoriaId": "10073",
+          "nivel": 2
+        },
+        {
+          "id": "10093",
+          "nombre": "Periféricos y Accesorios",
+          "slug": "perifericos-y-accesorios",
+          "urlfragment": "Perifericos_y_Accesorios",
+          "categoriaId": "10073",
+          "nivel": 2
+        },
+        {
+          "id": "10094",
+          "nombre": "Seguridad y Conectividad",
+          "slug": "seguridad-y-conectividad",
+          "urlfragment": "Seguridad_y_Conectividad",
+          "categoriaId": "10073",
+          "nivel": 2
+        }
+      ]
+    },
+    {
+      "id": "10074",
+      "nombre": "TV y Audio",
+      "slug": "tv-y-audio",
+      "urlfragment": "TV_Y_AUDIO",
+      "subcategorias": [
+        {
+          "id": "10098",
+          "nombre": "Smart TV",
+          "slug": "smart-tv",
+          "urlfragment": "Smart_TV",
+          "categoriaId": "10074",
+          "nivel": 2
+        },
+        {
+          "id": "10097",
+          "nombre": "Proyectores",
+          "slug": "proyectores",
+          "urlfragment": "Proyectores",
+          "categoriaId": "10074",
+          "nivel": 2
+        },
+        {
+          "id": "10095",
+          "nombre": "Audio Hogar",
+          "slug": "audio-hogar",
+          "urlfragment": "Audio_Hogar",
+          "categoriaId": "10074",
+          "nivel": 2
+        },
+        {
+          "id": "10096",
+          "nombre": "Audio Personal",
+          "slug": "audio-personal",
+          "urlfragment": "Audio_Personal",
+          "categoriaId": "10074",
+          "nivel": 2
+        },
+        {
+          "id": "10100",
+          "nombre": "Streaming",
+          "slug": "streaming",
+          "urlfragment": "Streaming",
+          "categoriaId": "10074",
+          "nivel": 2
+        }
+      ]
+    },
+    {
+      "id": "10071",
+      "nombre": "Electrodomésticos",
+      "slug": "electrodomesticos",
+      "urlfragment": "ELECTRODOMESTICOS",
+      "subcategorias": [
+        {
+          "id": "electro-climatizacion",
+          "nombre": "Climatización",
+          "slug": "climatizacion",
+          "urlfragment": "Climatizacion",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-refrigeracion",
+          "nombre": "Refrigeración",
+          "slug": "refrigeracion",
+          "urlfragment": "Refrigeracion",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-lavado",
+          "nombre": "Lavado",
+          "slug": "lavado",
+          "urlfragment": "Lavado",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-coccion",
+          "nombre": "Cocción",
+          "slug": "coccion",
+          "urlfragment": "Coccion",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-agua-caliente",
+          "nombre": "Agua Caliente",
+          "slug": "agua-caliente",
+          "urlfragment": "Agua_Caliente",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-pequenos-cocina",
+          "nombre": "Pequeños de Cocina",
+          "slug": "pequenos-de-cocina",
+          "urlfragment": "Pequenos_de_Cocina",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "electro-pequenos-hogar",
+          "nombre": "Pequeños de Hogar",
+          "slug": "pequenos-de-hogar",
+          "urlfragment": "Pequenos_de_Hogar",
+          "categoriaId": "10071",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        }
+      ]
+    },
+    {
+      "id": "10072",
+      "nombre": "Hogar",
+      "slug": "hogar",
+      "urlfragment": "HOGAR",
+      "subcategorias": [
+        {
+          "id": "hogar-construccion",
+          "nombre": "Construcción",
+          "slug": "construccion",
+          "urlfragment": "Construccion",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-herramientas",
+          "nombre": "Herramientas",
+          "slug": "herramientas",
+          "urlfragment": "Herramientas",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-deportes",
+          "nombre": "Deportes & Fitness",
+          "slug": "deportes-y-fitness",
+          "urlfragment": "Deportes_Fitness",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-salud",
+          "nombre": "Salud y Belleza",
+          "slug": "salud-y-belleza",
+          "urlfragment": "Salud_y_Belleza",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-mascotas",
+          "nombre": "Animales y Mascotas",
+          "slug": "animales-y-mascotas",
+          "urlfragment": "Animales_Mascotas",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-jardin",
+          "nombre": "Jardín",
+          "slug": "jardin",
+          "urlfragment": "Jardin",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        },
+        {
+          "id": "hogar-muebles",
+          "nombre": "Muebles e Interiores",
+          "slug": "muebles-e-interiores",
+          "urlfragment": "Muebles_e_Interiores",
+          "categoriaId": "10072",
+          "nivel": 2,
+          "nota": "id_numerico_pendiente"
+        }
+      ]
+    }
+  ]
+}

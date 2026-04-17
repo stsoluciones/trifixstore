@@ -15,7 +15,7 @@ export default function ProductCard({ producto }: Props) {
   return (
     <Link
       href={`/productos/${producto.slug}`}
-      className="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden group"
+      className="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden group cursor-pointer"
     >
       {/* Imagen */}
       <div className="relative aspect-square overflow-hidden bg-[#f5f5f5]">

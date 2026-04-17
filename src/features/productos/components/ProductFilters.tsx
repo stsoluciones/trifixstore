@@ -41,7 +41,7 @@ export default function ProductFilters({ categoriaActiva }: Props) {
             <li>
               <button
                 onClick={() => setParam('categoria', null)}
-                className={`text-sm w-full text-left py-1 transition-colors ${
+                className={`text-sm w-full text-left py-1 transition-colors cursor-pointer ${
                   !params.get('categoria') ? 'text-[#E8640B] font-semibold' : 'text-[#333] hover:text-[#E8640B]'
                 }`}
               >
@@ -52,7 +52,7 @@ export default function ProductFilters({ categoriaActiva }: Props) {
               <li key={cat.slug}>
                 <button
                   onClick={() => setParam('categoria', cat.slug)}
-                  className={`text-sm w-full text-left py-1 transition-colors ${
+                  className={`text-sm w-full text-left py-1 transition-colors cursor-pointer ${
                     params.get('categoria') === cat.slug
                       ? 'text-[#E8640B] font-semibold'
                       : 'text-[#333] hover:text-[#E8640B]'
@@ -79,7 +79,7 @@ export default function ProductFilters({ categoriaActiva }: Props) {
             <li key={op.value}>
               <button
                 onClick={() => setParam('orden', op.value)}
-                className={`text-sm w-full text-left py-1 transition-colors ${
+                className={`text-sm w-full text-left py-1 transition-colors cursor-pointer ${
                   orden === op.value ? 'text-[#E8640B] font-semibold' : 'text-[#333] hover:text-[#E8640B]'
                 }`}
               >

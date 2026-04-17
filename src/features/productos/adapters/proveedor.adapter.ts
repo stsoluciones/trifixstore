@@ -46,9 +46,10 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 }
 
-function encodeImageUrl(url: string): string {
-  // Encode espacios y caracteres especiales preservando el protocolo y slashes
-  return url.replace(/ /g, '%20')
+function normalizeImageUrl(url: string): string {
+  // Las URLs de Ceven pueden tener espacios literales — los reemplazamos.
+  // Si ya tienen %20, no tocamos. next/image maneja el resto.
+  return url.includes('%20') ? url : url.replace(/ /g, '%20')
 }
 
 export function adaptarProductoCeven(item: CevenItem, categoriaId: string): ProductoInterno {
@@ -58,7 +59,7 @@ export function adaptarProductoCeven(item: CevenItem, categoriaId: string): Prod
     : item.displayname ?? item.storedisplayname2 ?? ''
 
   const imagenes = Array.isArray(item.itemimages_detail?.urls)
-    ? item.itemimages_detail.urls.map(u => encodeImageUrl(u.url)).filter(Boolean)
+    ? item.itemimages_detail.urls.map(u => normalizeImageUrl(u.url)).filter(Boolean)
     : []
 
   return {
