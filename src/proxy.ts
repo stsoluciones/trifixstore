@@ -7,7 +7,7 @@ const RUTAS_PROTEGIDAS: Record<string, string[]> = {
   '/dashboard/cliente':  ['ADMIN', 'VENDEDOR', 'CLIENTE'],
 }
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   const rutaRequerida = Object.keys(RUTAS_PROTEGIDAS).find(r => pathname.startsWith(r))

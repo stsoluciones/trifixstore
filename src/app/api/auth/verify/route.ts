@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import admin from '@/shared/lib/firebase-admin'
-import { prisma } from '@/shared/lib/prisma'
+import { getDb } from '@/shared/lib/mongodb'
 import { signJWT, COOKIE_OPTIONS } from '@/shared/lib/jwt'
 
 export async function POST(req: NextRequest) {
@@ -9,29 +9,36 @@ export async function POST(req: NextRequest) {
   try {
     const decoded = await admin.auth().verifyIdToken(token)
 
-    // El rol ADMIN se asigna exclusivamente al email del dueño definido en ADMIN_EMAIL.
-    // Nadie más puede obtener ese rol mediante registro normal.
     const adminEmail = process.env.ADMIN_EMAIL
     const esAdmin = adminEmail && decoded.email === adminEmail
 
-    const usuario = await prisma.usuario.upsert({
-      where: { firebaseUid: decoded.uid },
-      // Si es el email admin, siempre garantizar ADMIN (por si la DB fue reseteada)
-      update: esAdmin ? { rol: 'ADMIN' } : {},
-      create: {
-        firebaseUid: decoded.uid,
-        email: decoded.email ?? '',
-        nombre: decoded.name ?? null,
-        rol: esAdmin ? 'ADMIN' : 'CLIENTE',
+    const db = await getDb()
+    const usuarios = db.collection('usuarios')
+
+    const result = await usuarios.findOneAndUpdate(
+      { firebaseUid: decoded.uid },
+      {
+        $set: {
+          email: decoded.email ?? '',
+          ...(esAdmin ? { rol: 'ADMIN' } : {}),
+        },
+        $setOnInsert: {
+          firebaseUid: decoded.uid,
+          nombre: decoded.name ?? null,
+          rol: esAdmin ? 'ADMIN' : 'CLIENTE',
+          creadoEn: new Date(),
+        },
       },
-      select: { rol: true, nombre: true },
-    })
+      { upsert: true, returnDocument: 'after' }
+    )
+
+    const usuario = result ?? { rol: esAdmin ? 'ADMIN' : 'CLIENTE', nombre: decoded.name ?? null }
 
     const payload = {
       uid: decoded.uid,
       email: decoded.email ?? '',
-      rol: usuario.rol,
-      nombre: usuario.nombre,
+      rol: (usuario as { rol: string }).rol,
+      nombre: (usuario as { nombre?: string | null }).nombre ?? null,
     }
 
     const jwt = await signJWT(payload)
