@@ -2,12 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
-// Inicialización explícita del datasource para que funcione
-// tanto en local (.env.local) como en Vercel (env vars del dashboard)
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    datasourceUrl: process.env.DATABASE_URL,
-  })
+// Prisma v7 lee DATABASE_URL del entorno automáticamente
+export const prisma = globalForPrisma.prisma ?? new PrismaClient()
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
