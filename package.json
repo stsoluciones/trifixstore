@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "format": "prettier --write .",
+    "db:seed": "node scripts/seed-mongodb.mjs",
+    "db:indexes": "node -e \"import('./src/shared/lib/db/collections.js').then(m => m.crearIndices()).then(() => { console.log('Índices creados'); process.exit(0); })\"",
     "postinstall": "echo done"
   },
   "dependencies": {

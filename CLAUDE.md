@@ -6,7 +6,7 @@ Ecommerce de modelo **dropshipping**: el dueño administra el catálogo y los pe
 
 El dueño nunca tiene stock propio. No hay vendedores independientes que publiquen productos. El admin controla todo el catálogo y delega operaciones de soporte a sus vendedores contratados.
 
-Stack: Next.js 15 App Router, Tailwind CSS v4, TypeScript estricto, Firebase Auth.
+Stack: Next.js 15 App Router, Tailwind CSS v4, TypeScript estricto, Firebase Auth, MongoDB (driver nativo).
 
 ---
 
@@ -53,7 +53,7 @@ Los productos vienen de la API del proveedor. La DB local solo cachea el catálo
 | Estilos | Tailwind CSS v4 |
 | Estado global | Zustand |
 | Formularios | React Hook Form + Zod |
-| Base de datos | MongoDB vía Prisma ORM |
+| Base de datos | MongoDB Atlas — driver nativo (`mongodb` npm) |
 | Auth | Firebase Authentication (client) + Firebase Admin SDK (server) |
 | Imágenes | Next/Image + Cloudinary |
 | Pagos | MercadoPago SDK |
@@ -628,37 +628,59 @@ Si el proveedor rechaza o no responde, la orden NUNCA queda como "completada". E
 
 ---
 
-## Modelo de Datos (Prisma)
+## Modelo de Datos (MongoDB — driver nativo)
 
-```prisma
-enum Rol {
-  ADMIN     // Dueño del negocio — acceso total
-  VENDEDOR  // Soporte/operaciones — acceso a pedidos
-  CLIENTE   // Comprador — acceso a su historial
-}
+No se usa Prisma ORM. La capa de datos está en `src/shared/lib/db/`.
 
-model Usuario {
-  id          String   @id @default(cuid())
-  firebaseUid String   @unique           // uid de Firebase Auth
-  email       String   @unique
-  nombre      String?
-  rol         Rol      @default(CLIENTE)
-  creadoEn    DateTime @default(now())
-  ordenes     Orden[]
-}
+### Colecciones y sus tipos TypeScript
 
-// Demás entidades: Producto, Categoria, Orden, ItemOrden, Direccion
-// Nota: los productos se sincronizan desde la API del proveedor.
-// La tabla Producto en DB es un cache local del catálogo del proveedor.
+```
+src/shared/lib/db/types.ts        ← interfaces de documentos
+src/shared/lib/db/collections.ts  ← getters tipados + crearIndices()
+src/shared/lib/mongodb.ts         ← singleton MongoClient
+```
+
+| Colección    | Tipo TS         | Descripción                                   |
+|---|---|---|
+| `usuarios`   | `UsuarioDoc`    | Creado automáticamente en login/register      |
+| `categorias` | `CategoriaDoc`  | Cargado por `scripts/seed-mongodb.mjs`        |
+| `productos`  | `ProductoDoc`   | Cache del catálogo del proveedor              |
+| `ordenes`    | `OrdenDoc`      | Creada al confirmar checkout                  |
+
+### Acceso a datos — patrón de uso
+
+```typescript
+// ✅ Correcto — usar el getter tipado de collections.ts
+import { getProductos } from '@/shared/lib/db/collections'
+const col = await getProductos()
+const producto = await col.findOne({ slug })
+
+// ❌ Incorrecto — no usar getDb() directamente en features
+import { getDb } from '@/shared/lib/mongodb'
+const db = await getDb()  // solo usar en collections.ts
+```
+
+### Roles
+
+```typescript
+type Rol = 'ADMIN' | 'VENDEDOR' | 'CLIENTE'
+// Se guarda en la colección `usuarios`, campo `rol`
+// El rol se verifica en el middleware via JWT
+```
+
+### Seed y scripts
+
+```bash
+node scripts/seed-mongodb.mjs   # Carga categorías y productos a MongoDB
 ```
 
 ---
 
 ## Features Principales (orden de implementación)
 
-1. **Setup inicial** — Next.js + Tailwind + Prisma + ESLint/Prettier + Firebase SDK
+1. **Setup inicial** — Next.js + Tailwind + MongoDB (driver nativo) + ESLint/Prettier + Firebase SDK
 2. **Firebase Auth** — Login/Register con Firebase, verificación de token en server (firebase-admin), middleware de rutas
-3. **Roles y Dashboards** — Enum de roles en Prisma, middleware Next.js protegiendo `/dashboard/*`, 3 layouts de dashboard
+3. **Roles y Dashboards** — Roles en MongoDB (`usuarios.rol`), middleware Next.js protegiendo `/dashboard/*`, 3 layouts de dashboard
 4. **Adapter de API Proveedor** — Interfaz `ProductoInterno`, función `adaptarProducto()`, integración en `producto.service.ts`
 5. **Layout base** — Header, footer, sidebar de dashboards
 6. **Catálogo** — Listado de productos con filtros, datos desde adapter
@@ -709,13 +731,9 @@ model Usuario {
   "dev": "next dev",
   "build": "next build",
   "start": "next start",
-  "lint": "next lint",
+  "lint": "eslint",
   "format": "prettier --write .",
-  "db:push": "prisma db push",
-  "db:seed": "tsx prisma/seed.ts",
-  "db:studio": "prisma studio",
-  "test": "vitest",
-  "test:ui": "vitest --ui"
+  "db:seed": "node scripts/seed-mongodb.mjs"
 }
 ```
 
@@ -768,6 +786,7 @@ MP_WEBHOOK_SECRET=
 - Las imágenes siempre a través de `next/image` con tamaños explícitos
 - **Adapter obligatorio**: Los datos de la API del proveedor SOLO se acceden a través de `proveedor.adapter.ts`. Nunca usar el formato raw fuera de esa carpeta
 - **Firebase Admin solo en server**: `firebase-admin.ts` nunca se importa en Client Components ni en archivos con `'use client'`
-- **Roles siempre desde Prisma**: El rol del usuario viene de la tabla `Usuario` de PostgreSQL, no de Firebase Custom Claims. El `firebaseUid` es solo el puente de identificación
+- **Roles siempre desde MongoDB**: El rol del usuario viene de la colección `usuarios` en MongoDB, no de Firebase Custom Claims. El `firebaseUid` es solo el puente de identificación. El middleware lo verifica vía JWT (sin hit a DB en cada request)
+- **Acceso a MongoDB solo via collections.ts**: Usar los getters tipados `getProductos()`, `getOrdenes()`, etc. de `src/shared/lib/db/collections.ts`. Nunca llamar `getDb()` directamente desde los servicios de features
 - **Estados de orden explícitos**: Al actualizar el estado de una orden, siempre usar los valores del tipo `EstadoOrden` definido en `orden.types.ts`. Nunca strings ad-hoc
 - **Webhook idempotente**: El handler del webhook de MercadoPago debe verificar si la orden ya fue procesada antes de volver a enviarla al proveedor (protección contra webhooks duplicados)

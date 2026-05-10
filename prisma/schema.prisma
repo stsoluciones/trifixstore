@@ -1,80 +1,14 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "mongodb"
-}
-
-// Roles: "ADMIN" | "VENDEDOR" | "CLIENTE"
-// Estados de orden: "PENDIENTE_PAGO" | "PAGADO" | "ENVIADO_A_PROVEEDOR" | "ERROR_PROVEEDOR" | "EN_CAMINO" | "ENTREGADO"
-
-model Usuario {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  firebaseUid String   @unique
-  email       String   @unique
-  nombre      String?
-  telefono    String?
-  rol         String   @default("CLIENTE")
-  creadoEn    DateTime @default(now())
-  ordenes     Orden[]
-}
-
-model Categoria {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  nombre    String
-  slug      String     @unique
-  productos Producto[]
-}
-
-model Producto {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  proveedorId    String    @unique
-  nombre         String
-  descripcion    String
-  slug           String    @unique
-  precio         Float
-  precioOriginal Float?
-  imagenes       String[]
-  stock          Int       @default(0)
-  activo         Boolean   @default(true)
-  categoriaId    String    @db.ObjectId
-  categoria      Categoria @relation(fields: [categoriaId], references: [id])
-  creadoEn       DateTime  @default(now())
-  actualizadoEn  DateTime  @updatedAt
-  itemsOrden     ItemOrden[]
-}
-
-model Orden {
-  id             String     @id @default(auto()) @map("_id") @db.ObjectId
-  usuarioId      String     @db.ObjectId
-  usuario        Usuario    @relation(fields: [usuarioId], references: [id])
-  estado         String     @default("PENDIENTE_PAGO")
-  total          Float
-  mpPagoId       String?
-  items          ItemOrden[]
-  direccionEnvio Direccion?
-  creadoEn       DateTime   @default(now())
-  actualizadoEn  DateTime   @updatedAt
-}
-
-model ItemOrden {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  ordenId        String   @db.ObjectId
-  orden          Orden    @relation(fields: [ordenId], references: [id])
-  productoId     String   @db.ObjectId
-  producto       Producto @relation(fields: [productoId], references: [id])
-  cantidad       Int
-  precioUnitario Float
-}
-
-model Direccion {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  ordenId      String @unique @db.ObjectId
-  orden        Orden  @relation(fields: [ordenId], references: [id])
-  calle        String
-  ciudad       String
-  provincia    String
-  codigoPostal String
-  pais         String @default("Argentina")
-}
+// ⚠️  ESTE ARCHIVO ES SOLO UNA REFERENCIA DE ESQUEMA — NO SE USA EN PRODUCCIÓN
+//
+// El proyecto usa el driver nativo de MongoDB (paquete `mongodb`) sin Prisma ORM.
+// La capa de acceso a datos está en:
+//   src/shared/lib/mongodb.ts        → singleton de conexión
+//   src/shared/lib/db/types.ts       → interfaces TypeScript de documentos
+//   src/shared/lib/db/collections.ts → getters tipados + crearIndices()
+//   src/features/*/services/         → lógica CRUD de cada feature
+//
+// Colecciones MongoDB:
+//   usuarios   → UsuarioDoc
+//   categorias → CategoriaDoc
+//   productos  → ProductoDoc
+//   ordenes    → OrdenDoc
